@@ -1,0 +1,12 @@
+.calc {
+	width: 364px;
+	height:582px;
+	background-color: #17171C;
+	margin: auto;
+	padding: 16px 20px 25px 20px;
+}
+
+main {
+max-width: 1100;
+margin: 50px auto 50px auto;
+}
