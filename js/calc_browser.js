@@ -16,7 +16,7 @@ let is_first_symbol = true;
 function Calc(op, num1, num2) {
 	switch (op) {
 		case 'div':
-			result = (num2 === 0) ? (num1 / num2) : "ERR";
+			result = (num2 !== 0) ? (num1 / num2) : "ERR";
 			break;
 		case 'sum': result = num1 + num2;
 			break;
@@ -100,9 +100,9 @@ btnEquals.addEventListener('click', function () {
 	}
 })
 
-function calcOutputSize() {
+/* function isCalcoutputFitSize() {
 	let numberLength = calcOutput.textContent;
 	return alert(numberLength.length);
-}
+} */
 
 
