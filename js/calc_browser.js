@@ -8,11 +8,11 @@ document.querySelector('.calc__output').textContent = outputValue;
 Calc() {
 	let numbers = document.querySelectorAll('.number');
 	for (let number of numbers) {
-		number.addEventListener('click', function {
+		number.addEventListener('click', function() {
 			outputValue = outputValue + number.textContent;
 		})
 
-	})
+	}
 }
 
 
