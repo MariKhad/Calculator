@@ -5,9 +5,12 @@ div {
 	padding: 0;
 }
 
+main {
+	margin: 70px;
+}
 
 .calc__body {
-	margin:180px auto 0;
+	margin: auto;
 	box-sizing: border-box;
 	width: 364px;
 	height:582px;
@@ -41,7 +44,7 @@ button {
 	font-family: 'Work Sans',sans-serif;
 	font-weight: normal;
 	font-size: 32px;
-	line-height: 40px;
+	height: 72px;
 	cursor: pointer;
 }
 
