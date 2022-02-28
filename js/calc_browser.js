@@ -13,30 +13,15 @@ let result = "";
 let is_first_symbol = true;
 // для гита коммит
 
-
 function Calc(op, num1, num2) {
-	switch (op) {
-		case 'div':
-			result = (num2 !== 0) ? (num1 / num2) : "ERR";
-			break;
-		case 'sum': result = num1 + num2;
-			break;
-		case 'sub': result = num1 - num2;
-			break;
-		case 'multi': result = num1 * num2;
-			break;
+	let operations = {
+		'sum': num1 + num2,
+		'sub': num1 - num2,
+		'multi': num1 * num2,
+		'div': (num2 !== 0) ? (num1 / num2) : "ERR",
 	}
-	return result;
+	return result = operations[op];
 }
-
-/* let operations = {
-	'sum': num1 + num2,
-	'sub': num1 - num2,
-	'multi': num1 * num2,
-	'div': num1 / num2,
-	//'div': (num2 !== 0) ? num1 / num2 : "Err",
-} */
-
 
 
 
@@ -112,4 +97,17 @@ btnEquals.addEventListener('click', function () {
 	return alert(numberLength.length);
 } */
 
-
+/* function Calc(op, num1, num2) {
+	switch (op) {
+		case 'div':
+			result = (num2 !== 0) ? (num1 / num2) : "ERR";
+			break;
+		case 'sum': result = num1 + num2;
+			break;
+		case 'sub': result = num1 - num2;
+			break;
+		case 'multi': result = num1 * num2;
+			break;
+	}
+	return result;
+} */
