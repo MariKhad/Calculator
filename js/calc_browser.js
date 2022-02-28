@@ -10,21 +10,23 @@ let num1 = "";
 let num2 = "";
 let operator = "";
 let result = "";
+let is_first_symbol = true;
 
 
-function Calc(op, num1, num2){
-	switch (op){
-		case'div': result = num1/num2;
-		break;
+function Calc(op, num1, num2) {
+	switch (op) {
+		case 'div':
+			result = (num2 === 0) ? (num1 / num2) : "ERR";
+			break;
 		case 'sum': result = num1 + num2;
-		break;
+			break;
 		case 'sub': result = num1 - num2;
-		break;
+			break;
 		case 'multi': result = num1 * num2;
-		break;
+			break;
 	}
-	 return result;
-  }
+	return result;
+}
 
 /* let operations = {
 	'sum': num1 + num2,
@@ -40,12 +42,13 @@ function Calc(op, num1, num2){
 for (let btnNumber of btnsNumber) {
 	btnNumber.addEventListener('click', function (event) {
 		const btnValue = event.target.textContent;
-		if ((calcOutput.textContent === "0") || (operator !== "")) {
+		if ((calcOutput.textContent === "0") || (is_first_symbol === true) || (calcOutput.textContent === "ERR")) {
 			calcOutput.textContent = btnValue;
 		} else {
 			calcOutput.textContent += btnValue;
 		}
-
+		is_first_symbol = false;
+		
 	})
 
 }
@@ -54,9 +57,11 @@ btnClear.addEventListener('click', function () {
 	operator = "";
 	num1 = "";
 	num2 = "";
+	is_first_symbol = true;
 })
 
 btnBackSpace.addEventListener('click', function () {
+	lastBtn = 'backspace';
 	let resultTemp = calcOutput.textContent;
 	if (resultTemp.length === 1 || resultTemp === "0") {
 		resultTemp = "0"
@@ -78,6 +83,7 @@ for (let btnOperator of btnsOperator) {
 			num1 = +calcOutput.textContent;
 			operator = event.target.id;
 		}
+		is_first_symbol = true;
 	})
 }
 
@@ -88,12 +94,15 @@ btnEquals.addEventListener('click', function () {
 		calcOutput.textContent = result;
 		operator = "";
 		num1 = "";
+		is_first_symbol = true;
 	} else {
 		alert("Выберите математическое действие")
 	}
-
 })
 
-
+function calcOutputSize() {
+	let numberLength = calcOutput.textContent;
+	return alert(numberLength.length);
+}
 
 
