@@ -48,7 +48,7 @@ for (let btnNumber of btnsNumber) {
 			calcOutput.textContent += btnValue;
 		}
 		is_first_symbol = false;
-		
+
 	})
 
 }
@@ -74,7 +74,13 @@ btnBackSpace.addEventListener('click', function () {
 
 for (let btnOperator of btnsOperator) {
 	btnOperator.addEventListener('click', function (event) {
-		if (operator !== "") {
+		if (calcOutput.textContent === "ERR") {
+			alert("Операция невозможна");
+			calcOutput.textContent = "0";
+			operator = "";
+			num1 = "";
+			num2 = "";
+		} else if (operator !== "") {
 			num2 = +calcOutput.textContent
 			num1 = Calc(operator, num1, num2);
 			operator = event.target.id;
