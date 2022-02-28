@@ -11,6 +11,7 @@ let num2 = "";
 let operator = "";
 let result = "";
 let is_first_symbol = true;
+// для гита коммит
 
 
 function Calc(op, num1, num2) {
