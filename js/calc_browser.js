@@ -1,14 +1,14 @@
-const calcOutput = document.querySelector('.calc__output');
-calcOutput.textContent = "0";
-let btnValue = "0";
-const btnsNumber = document.querySelectorAll('.number');
-const btnClear = document.querySelector('.clear');
-const btnBackSpace = document.querySelector('.backspace');
-const btnsOperator = document.querySelectorAll('.operator');
-const btnEquals = document.querySelector('.equals')
-let num1 = "";
-let num2 = "";
-let operator = "";
+import { CALC_UI } from './view.js';
+CALC_UI.calcOutput.textContent = "0";
+let operator, num1, num2;
+function clearData() {
+  operator = "";
+  num1 = "";
+  num2 = "";
+}
+clearData();
+
+
 let result = "";
 let is_first_symbol = true;
 // для гита коммит
@@ -25,65 +25,60 @@ function Calc(op, num1, num2) {
 
 
 
-for (let btnNumber of btnsNumber) {
+for (let btnNumber of CALC_UI.btnsNumber) {
 	btnNumber.addEventListener('click', function (event) {
 		const btnValue = event.target.textContent;
-		if ((calcOutput.textContent === "0") || (is_first_symbol === true) || (calcOutput.textContent === "ERR")) {
-			calcOutput.textContent = btnValue;
+		if ((CALC_UI.calcOutput.textContent === "0") || (is_first_symbol === true) || (CALC_UI.calcOutput.textContent === "ERR")) {
+			CALC_UI.calcOutput.textContent = btnValue;
 		} else {
-			calcOutput.textContent += btnValue;
+			CALC_UI.calcOutput.textContent += btnValue;
 		}
 		is_first_symbol = false;
 
 	})
 
 }
-btnClear.addEventListener('click', function () {
-	calcOutput.textContent = "0";
-	operator = "";
-	num1 = "";
-	num2 = "";
+CALC_UI.btnClear.addEventListener('click', function () {
+	CALC_UI.calcOutput.textContent = "0";
+	clearData();
 	is_first_symbol = true;
 })
 
-btnBackSpace.addEventListener('click', function () {
-	lastBtn = 'backspace';
-	let resultTemp = calcOutput.textContent;
+CALC_UI.btnBackSpace.addEventListener('click', function () {
+	let resultTemp = CALC_UI.calcOutput.textContent;
 	if (resultTemp.length === 1 || resultTemp === "0") {
 		resultTemp = "0"
 	} else {
 		resultTemp = resultTemp.substr(0, resultTemp.length - 1);
 	}
-	calcOutput.textContent = resultTemp;
+	CALC_UI.calcOutput.textContent = resultTemp;
 })
 
 
-for (let btnOperator of btnsOperator) {
+for (let btnOperator of CALC_UI.btnsOperator) {
 	btnOperator.addEventListener('click', function (event) {
-		if (calcOutput.textContent === "ERR") {
+		if (CALC_UI.calcOutput.textContent === "ERR") {
 			alert("Операция невозможна");
-			calcOutput.textContent = "0";
-			operator = "";
-			num1 = "";
-			num2 = "";
+			CALC_UI.calcOutput.textContent = "0";
+			clearData();
 		} else if (operator !== "") {
 			num2 = +calcOutput.textContent
 			num1 = Calc(operator, num1, num2);
 			operator = event.target.id;
-			calcOutput.textContent = num1;
+			CALC_UI.calcOutput.textContent = num1;
 		} else {
-			num1 = +calcOutput.textContent;
+			num1 = +CALC_UI.calcOutput.textContent;
 			operator = event.target.id;
 		}
 		is_first_symbol = true;
 	})
 }
 
-btnEquals.addEventListener('click', function () {
+CALC_UI.btnEquals.addEventListener('click', function () {
 	if (operator !== "") {
-		num2 = +calcOutput.textContent;
+		num2 = +CALC_UI.calcOutput.textContent;
 		Calc(operator, num1, num2);
-		calcOutput.textContent = result;
+		CALC_UI.calcOutput.textContent = result;
 		operator = "";
 		num1 = "";
 		is_first_symbol = true;
@@ -91,23 +86,3 @@ btnEquals.addEventListener('click', function () {
 		alert("Выберите математическое действие")
 	}
 })
-
-/* function isCalcoutputFitSize() {
-	let numberLength = calcOutput.textContent;
-	return alert(numberLength.length);
-} */
-
-/* function Calc(op, num1, num2) {
-	switch (op) {
-		case 'div':
-			result = (num2 !== 0) ? (num1 / num2) : "ERR";
-			break;
-		case 'sum': result = num1 + num2;
-			break;
-		case 'sub': result = num1 - num2;
-			break;
-		case 'multi': result = num1 * num2;
-			break;
-	}
-	return result;
-} */
